@@ -5,17 +5,29 @@ const getDestination = async (req, res) => {
   res.status(200).json(destination);
 };
 
+const getDestinationLimit = async (req, res) => {
+  const limit = req.params.limit;
+  const destination = await Destination.find().limit(limit);
+  res.status(200).json(destination);
+};
+
 const setDestination = async (req, res) => {
-  const { title, image_url, category } = req.body;
-  const destination = await Destination.create({
+  const { title, image_url, price, minimum_pax, inclution, destination } =
+    req.body;
+  const response = await Destination.create({
     title,
     image_url,
-    category,
+    price,
+    minimum_pax,
+    inclution,
+    destination,
+    slug: title?.toLowerCase().replaceAll(" ", "-"),
   });
-  res.status(200).json(destination);
+  res.status(200).json(response);
 };
 
 module.exports = {
   getDestination,
   setDestination,
+  getDestinationLimit,
 };

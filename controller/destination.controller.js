@@ -1,14 +1,20 @@
 const Destination = require("../model/destination.model");
 
 const getDestination = async (req, res) => {
-  const destination = await Destination.find();
+  const { limit } = req.query;
+  let destination;
+  if (limit) {
+    destination = await Destination.find().limit(Number(limit));
+  } else {
+    destination = await Destination.find();
+  }
   res.status(200).json(destination);
 };
 
-const getDestinationLimit = async (req, res) => {
-  const limit = req.params.limit;
-  const destination = await Destination.find().limit(limit);
-  res.status(200).json(destination);
+const getDestinationSlug = async (req, res) => {
+  const { slug } = req.params;
+  const destination = await Destination.find({ slug });
+  res.status(200).json(destination[0]);
 };
 
 const setDestination = async (req, res) => {
@@ -29,5 +35,5 @@ const setDestination = async (req, res) => {
 module.exports = {
   getDestination,
   setDestination,
-  getDestinationLimit,
+  getDestinationSlug,
 };

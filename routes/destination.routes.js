@@ -3,9 +3,9 @@ const router = express.Router();
 const {
   getDestination,
   setDestination,
-  getDestinationLimit,
+  getDestinationSlug,
 } = require("../controller/destination.controller");
 
 router.route("/").get(getDestination).post(setDestination);
-router.route("/:limit").get(getDestinationLimit);
+router.route("/:slug").get(getDestinationSlug);
 module.exports = router;

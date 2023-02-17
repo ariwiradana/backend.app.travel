@@ -3,9 +3,9 @@ const router = express.Router();
 const {
   getTransport,
   setTransport,
-  getTransportLimit,
+  getTransportSlug,
 } = require("../controller/transport.controller");
 
 router.route("/").get(getTransport).post(setTransport);
-router.route("/:limit").get(getTransportLimit);
+router.route("/:slug").get(getTransportSlug);
 module.exports = router;

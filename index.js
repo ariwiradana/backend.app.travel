@@ -9,10 +9,7 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-
-app.use("/api/destination", require("./routes/destination.routes"));
-app.use("/api/thumbnail", require("./routes/thumbnail.routes"));
-app.use("/api/transport", require("./routes/transport.routes"));
+require("./routes")(app);
 
 const PORT = process.env.PORT;
 app.listen(PORT, () => console.log(`server is running in port: ${PORT}`));

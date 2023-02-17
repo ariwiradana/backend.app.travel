@@ -1,13 +1,20 @@
 const Transport = require("../model/transport.model");
 
 const getTransport = async (req, res) => {
-  const transport = await Transport.find();
+  const { limit } = req.query;
+
+  let transport;
+  if (limit) {
+    transport = await Transport.find().limit(Number(limit));
+  } else {
+    transport = await Transport.find();
+  }
   res.status(200).json(transport);
 };
 
-const getTransportLimit = async (req, res) => {
-  const limit = req.params.limit;
-  const transport = await Transport.find().limit(limit);
+const getTransportSlug = async (req, res) => {
+  const { slug } = req.params;
+  const transport = await Transport.find({ slug });
   res.status(200).json(transport);
 };
 
@@ -26,5 +33,5 @@ const setTransport = async (req, res) => {
 module.exports = {
   getTransport,
   setTransport,
-  getTransportLimit,
+  getTransportSlug,
 };

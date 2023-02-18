@@ -8,6 +8,7 @@ const DestinationSchema = mongoose.Schema({
   minimum_pax: Number,
   inclution: Array,
   destination: Array,
+  description: String,
 });
 
 module.exports = mongoose.model("destination", DestinationSchema);

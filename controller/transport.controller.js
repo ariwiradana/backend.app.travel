@@ -15,7 +15,7 @@ const getTransport = async (req, res) => {
 const getTransportSlug = async (req, res) => {
   const { slug } = req.params;
   const transport = await Transport.find({ slug });
-  res.status(200).json(transport);
+  res.status(200).json(transport[0]);
 };
 
 const setTransport = async (req, res) => {

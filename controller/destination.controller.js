@@ -18,8 +18,15 @@ const getDestinationSlug = async (req, res) => {
 };
 
 const setDestination = async (req, res) => {
-  const { title, image_url, price, minimum_pax, inclution, destination } =
-    req.body;
+  const {
+    title,
+    image_url,
+    price,
+    minimum_pax,
+    inclution,
+    destination,
+    description,
+  } = req.body;
   const response = await Destination.create({
     title,
     image_url,
@@ -27,6 +34,7 @@ const setDestination = async (req, res) => {
     minimum_pax,
     inclution,
     destination,
+    description,
     slug: title?.toLowerCase().replaceAll(" ", "-"),
   });
   res.status(200).json(response);

@@ -20,7 +20,7 @@ const getTransportSlug = async (req, res) => {
   const { slug } = req.params;
   try {
     const transport = await Transport.findOne({ slug });
-    res.status(200).json(transport[0]);
+    res.status(200).json(transport);
   } catch (error) {
     res.status(500).json(error);
   }

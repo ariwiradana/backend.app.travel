@@ -1,8 +1,14 @@
 const Review = require("../model/review.model");
 
 const getReview = async (req, res) => {
+  const { limit } = req.query;
   try {
-    const data = await Review.find();
+    let data
+    if (limit) {
+      data = await Review.find().limit(Number(limit));
+    } else {
+      data = await Review.find();
+    }
     res.status(200).json(data);
   } catch (error) {
     res.status(500).json(error);

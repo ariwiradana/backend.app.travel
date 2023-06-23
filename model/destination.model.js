@@ -9,6 +9,7 @@ const DestinationSchema = mongoose.Schema({
   inclution: Array,
   destination: Array,
   description: String,
+  images: Array,
 });
 
 module.exports = mongoose.model("destination", DestinationSchema);

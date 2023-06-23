@@ -2,7 +2,7 @@ const Review = require("../model/review.model");
 
 const getReview = async (req, res) => {
   try {
-    const data = await Review.findOne();
+    const data = await Review.findAll();
     res.status(200).json(data);
   } catch (error) {
     res.status(500).json(error);

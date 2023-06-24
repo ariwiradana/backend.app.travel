@@ -16,10 +16,10 @@ const getReview = async (req, res) => {
 };
 
 const setReview = async (req, res) => {
-  const { rating, name, content, created_at } = req.body;
+  const { rating, name, review, created_at } = req.body;
 
   try {
-    const newReview = await Review.create({ rating, name, content, created_at});
+    const newReview = await Review.create({ rating, name, review, created_at });
     res.status(200).json(newReview);
   } catch (error) {
     res.status(500).json(error);
